@@ -875,6 +875,22 @@ header {
     }
 }
 
+//PETS 425PX MOBILE
+@media screen and (max-width:425px) {
+    .pets-icons .icon-one:hover img {
+        left: 20%;
+        bottom: 25%;
+    }
+
+    .pets-icons .icon-one:hover p {
+        margin-left: 40%;
+        margin-top: 5%;
+
+    }
+
+}
+
+
 // RESULTS
 .results {
     max-width: 990px;
