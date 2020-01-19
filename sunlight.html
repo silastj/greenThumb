@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>sunlight</title>
+</head>
+
+
+<body>
+    <div class="warning warning-none">
+        <div class="warning-data">
+            <h2>Você precisa escolher uma opção!</h2>
+            <div class="warning-icons">
+                <img src="./assets/icons/coral/high-sun.svg" alt="High Sun">
+                <img src="./assets/icons/coral/low-sun.svg" alt="Low Sun">
+                <img src="./assets/icons/coral/no-answer.svg" alt="Sun">
+            </div>
+        </div>
+    </div>
+    <div class="sunlight">
+        <div class="sunlight-aside">
+            <aside>
+                <img src="./assets/logo/logo-greenthumb.svg" alt="Green Thumb">
+                <span class="linha-vertical"></span>
+            </aside>
+        </div>
+        <div class="sunlight-center">
+            <header>
+                <div class="title-mobile">
+                    <img src="./assets/logo/logo-greenthumb.svg" alt="Green Thumb">
+                </div>
+                <div class="sunlight-top">
+                    <img src="./assets/illustrations/sun.png" alt="Sun">
+                    <h2>First, set the amount of <span>sunlight</span> your plant will get.</h2>
+                </div>
+            </header>
+
+            <section>
+                <div class="sunlight-icons">
+                    <div class="icon-one" id="high" onclick="clicou(this)">
+                        <img src="./assets/icons/coral/high-sun.svg" alt="High Sun">
+                        <p>High sunlight </p>
+                    </div>
+
+                    <div class="icon-two" id="low" onclick="clicou(this)">
+                        <img src="./assets/icons/coral/low-sun.svg" alt="Low Sun">
+                        <p>Low sunlight </p>
+                    </div>
+
+                    <div class="icon-three" id="no" onclick="clicou(this)">
+                        <img src="./assets/icons/coral/no-answer.svg" alt="Sun">
+                        <p>No sunlight </p>
+                    </div>
+                </div>
+
+                <div class="sunlight-button">
+                    <div class="sunlight-button-home">
+                        <a href="/index.html">
+                            <i class="fas fa-arrow-left"><span>home</span></i>
+                        </a>
+                    </div>
+                    <div class="sunlight-button-next">
+                        <a onclick="redirect('water')">
+                            <i class="fas fa-arrow-right"><span>next</span></i>
+                        </a>
+
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+    <script src="assets/js/script.js"></script>
+    <script type="text/javascript">
+        function clicou(obj) {
+            event.preventDefault();
+
+            document.querySelector("#high").classList.remove('checked');
+            document.querySelector("#low").classList.remove('checked');
+            document.querySelector("#no").classList.remove('checked');
+
+            obj.classList.add('checked');
+            localStorage.setItem("sun", obj.getAttribute('id'));
+            // alert(localStorage.getItem('sun'));
+        }
+
+        function redirect(page) {
+
+            if (page != '') {
+
+                if (page == 'water') {
+                    //alert(localStorage.getItem('sun'));
+                    if (localStorage.getItem('sun') != null) {
+                        window.location.href = page + '.html';
+
+                    } else {
+                        // alert('Você precisa escolher uma opção!')
+                        document.querySelector(".warning").classList.remove();
+                        document.querySelector(".warning").style.visibility = "visible";
+                        window.scroll({
+                            top: 0,
+                            behavior: "smooth"
+                        });
+                        setTimeout(function () {
+                            document.querySelector(".warning").style.visibility = "hidden";
+                        }, 3000)
+
+                    }
+                }
+            }
+
+        }
+
+        verifySelected();
+
+        function verifySelected() {
+
+            var item = localStorage.getItem('sun');
+
+            if (item == 'high') {
+                document.querySelector('#high').classList.add('checked');
+            } else if (item == 'low') {
+                document.querySelector('#low').classList.add('checked');
+            } else if (item == 'no') {
+                document.querySelector('#no').classList.add('checked');
+            }
+
+        }
+    </script>
+</body>
+
+</html>

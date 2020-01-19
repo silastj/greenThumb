@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>results</title>
+</head>
+
+<body>
+    <div class="results">
+        <div class="results-aside">
+            <aside>
+                <img src="./assets/logo/logo-greenthumb.svg" alt="Green Thumb">
+                <span class="linha-vertical"></span>
+            </aside>
+        </div>
+        <div class="results-center">
+            <header>
+                <div class="title-mobile">
+                    <img src="./assets/logo/logo-greenthumb.svg" alt="Green Thumb">
+                </div>
+                <div class="results-top">
+                    <img src="./assets/illustrations/pick.png" alt="Pick">
+                    <h2>How often do you want to<span>water</span> your plant?</h2>
+                </div>
+            </header>
+
+            <section>
+                <div class="results-icons" id="results-icons">
+                    <div class="iconResults">
+                        <!-- <img src="./assets/plant pictures/bunny-ears-cacti.jpg" alt="Water">
+                        <p>High sunlight </p>
+                        <div class="results-price">
+                            <p>$25</p>
+                            <div class="results-temp">
+                                <img src="./assets/icons/coral/high-sun.svg" alt="High Sun">
+                                <img src="./assets//icons/coral/high-sun.svg" alt="One Drop">
+                            </div>
+                        </div>
+                        <a href="#">buy now</a> -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="assets/js/script.js"></script>
+    <script type="text/javascript">
+        var sun = localStorage.getItem('sun');
+        var water = localStorage.getItem('water');
+        var pets = localStorage.getItem('pets');
+        if (sun != null && water != null && pets != null) {
+            puxarApi(sun, water, pets)
+        } else {
+            window.location.href = 'sun.html';
+        }
+
+        async function puxarApi(sun, water, pets) {
+            //RECEBENDO A API E AGUARDA A API
+            const data = await fetch(
+                `https://6nrr6n9l50.execute-api.us-east-1.amazonaws.com/default/front-plantTest-service?sun=${sun}&water=${water}&pets=${pets}`
+            );
+            //TRANSFORMANDO EM JSON E AGUARDA
+            const response = await data.json();
+            // MONSTRANDO NO CONSOLE
+            console.log(response[0].id);
+
+            //DECLARANDO UM VARIAVEL VAZIA
+            var html = '';
+            //FAZENDO O LOOP NA API
+            for (var i in response) {
+                //RECEBENDO OS CAMPOS AVULSOS
+                html += `<div class="iconResults">
+                        <img src="${response[i].url}" alt="${response[i].name}">
+                        <p>${response[i].name}</p>
+                            <div class="results-price">
+                                <p>$${response[i].price}</p>
+                            <div class="results-temp">
+                                <img src="./assets/icons/coral/high-sun.svg" alt="High Sun">
+                                <img src="./assets//icons/coral/high-sun.svg" alt="One Drop">
+                            </div>
+                    </div>
+                        <a href="purchase.html">buy now</a>
+                    </div>`
+            }
+            document.querySelector('#results-icons').innerHTML = html;
+        }
+        //puxarApi();
+    </script>
+</body>
+
+
+</html>

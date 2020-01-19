@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>pets</title>
+</head>
+
+<body>
+    <div class="warning warning-none">
+        <div class="warning-data">
+            <h2>Você precisa escolher uma opção!</h2>
+            <div class="warning-icons">
+                <img src="./assets/icons/coral/pet.svg" alt="Pets">
+                <img src="./assets/icons/coral/no-answer.svg" alt="Pets">
+            </div>
+        </div>
+    </div>
+    <div class="pets">
+        <div class="pets-aside">
+            <aside>
+                <img src="./assets/logo/logo-greenthumb.svg" alt="Green Thumb">
+                <span class="linha-vertical"></span>
+            </aside>
+        </div>
+        <div class="pets-center">
+            <header>
+                <div class="title-mobile">
+                    <img src="./assets/logo/logo-greenthumb.svg" alt="Green Thumb">
+                </div>
+                <div class="pets-top">
+                    <img src="./assets/illustrations/dog.png" alt="Dog">
+                    <h2>Do you have pets? Do they<span>chew</span> plants?</h2>
+                    <p>We are asking because some plants can be <span>toxic</span> for your buddy. </p>
+                </div>
+            </header>
+
+            <section>
+                <div class="pets-icons">
+                    <div class="icon-one" id="true" onclick="clicou(this)">
+                        <img src="./assets/icons/coral/pet.svg" alt="Pets">
+                        <p>Yes</p>
+                    </div>
+
+                    <div class="icon-two" id="false" onclick="clicou(this)">
+                        <img src="./assets/icons/coral/no-answer.svg" alt="Pets">
+                        <p>No/They don't care</p>
+                    </div>
+                </div>
+
+                <div class="pets-button">
+                    <div class="pets-button-home">
+                        <a href="/water.html">
+                            <i class="fas fa-arrow-left"><span>previous</span></i>
+                        </a>
+                    </div>
+                    <div class="pets-button-next">
+                        <a onclick="redirect('results')">
+                            <i class="fas fa-arrow-right"><span>finish</span></i>
+                        </a>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+    <script src="assets/js/script.js"></script>
+    <script type="text/javascript">
+        function clicou(obj) {
+            event.preventDefault();
+
+            document.querySelector("#true").classList.remove('checked');
+            document.querySelector("#false").classList.remove('checked');
+
+            obj.classList.add('checked');
+            localStorage.setItem("pets", obj.getAttribute('id'));
+            // alert(localStorage.getItem('sun'));
+        }
+
+        function redirect(page) {
+
+            if (page != '') {
+
+                if (page == 'results') {
+                    //alert(localStorage.getItem('sun'));
+                    if (localStorage.getItem('pets') != null) {
+                        window.location.href = page + '.html';
+
+                    } else {
+                        document.querySelector(".warning").classList.remove();
+                        document.querySelector(".warning").style.visibility = "visible";
+                        window.scroll({
+                            top: 0,
+                            behavior: "smooth"
+                        });
+                        setTimeout(function () {
+                            document.querySelector(".warning").style.visibility = "hidden";
+                        }, 3000)
+                    }
+                }
+            }
+
+        }
+
+        verifySelected();
+
+        function verifySelected() {
+
+
+            var item = localStorage.getItem('pets');
+
+
+            if (item == 'true') {
+                document.querySelector('#true').classList.add('checked');
+            } else if (item == 'false') {
+                document.querySelector('#false').classList.add('checked');
+            }
+        }
+    </script>
+</body>
+
+</html>

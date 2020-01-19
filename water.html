@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>water</title>
+</head>
+
+<body>
+    <div class="warning warning-none">
+        <div class="warning-data">
+            <h2>Você precisa escolher uma opção!</h2>
+            <div class="warning-icons">
+                <img src="./assets/icons/green/one-drop.svg" alt="Water">
+                <img src="./assets/icons/green/two-drops.svg" alt="Water">
+                <img src="./assets/icons/green/three-drops.svg" alt="Water">
+            </div>
+        </div>
+    </div>
+    <div class="water">
+
+        <div class="water-aside">
+            <aside>
+                <img src="./assets/logo/logo-greenthumb.svg" alt="Green Thumb">
+                <span class="linha-vertical"></span>
+            </aside>
+        </div>
+        <div class="water-center">
+            <header>
+                <div class="title-mobile">
+                    <img src="./assets/logo/logo-greenthumb.svg" alt="Green Thumb">
+                </div>
+                <div class="water-top">
+                    <img src="./assets/illustrations/wateringcan.png" alt="Water">
+                    <h2>How often do you want to<span>water</span> your plant?</h2>
+                </div>
+            </header>
+
+            <section>
+                <div class="water-icons" id="water-icons">
+                    <div class="icon-one" id="daily" onclick="clicou(this)">
+                        <img src="./assets/icons/green/one-drop.svg" alt="Water">
+                        <p>Rarely</p>
+                    </div>
+
+                    <div class="icon-two" id="regularly" onclick="clicou(this)">
+                        <img src="./assets/icons/green/two-drops.svg" alt="Water">
+                        <p>Regularly</p>
+                    </div>
+
+                    <div class="icon-three" id="rarely" onclick="clicou(this)">
+                        <img src="./assets/icons/green/three-drops.svg" alt="Water">
+                        <p>Daily</p>
+                    </div>
+                </div>
+
+                <div class="water-button">
+                    <div class="water-button-home">
+                        <a href="/sunlight.html">
+                            <i class="fas fa-arrow-left"><span>previous</span></i>
+                        </a>
+                    </div>
+                    <div class="water-button-next">
+                        <a onclick="redirect('pets')">
+                            <i class="fas fa-arrow-right"><span>next</span></i>
+                        </a>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+    <script src="assets/js/script.js"></script>
+
+    <script type="text/javascript">
+        function clicou(obj) {
+            event.preventDefault();
+
+            document.querySelector("#daily").classList.remove('checked');
+            document.querySelector("#regularly").classList.remove('checked');
+            document.querySelector("#rarely").classList.remove('checked');
+
+            obj.classList.add('checked');
+            localStorage.setItem("water", obj.getAttribute('id'));
+            // alert(localStorage.getItem('sun'));
+        }
+
+        function redirect(page) {
+
+            if (page != '') {
+
+                if (page == 'pets') {
+                    //alert(localStorage.getItem('sun'));
+                    if (localStorage.getItem('water') != null) {
+                        window.location.href = page + '.html';
+
+                    } else {
+                        document.querySelector(".warning").classList.remove();
+                        document.querySelector(".warning").style.visibility = "visible";
+                        window.scroll({
+                            top: 0,
+                            behavior: "smooth"
+                        });
+                        setTimeout(function () {
+                            document.querySelector(".warning").style.visibility = "hidden";
+                        }, 3000)
+                    }
+                }
+            }
+
+        }
+
+        verifySelected();
+
+        function verifySelected() {
+
+
+            var item = localStorage.getItem('water');
+
+
+            if (item == 'daily') {
+                document.querySelector('#daily').classList.add('checked');
+            } else if (item == 'regularly') {
+                document.querySelector('#regularly').classList.add('checked');
+            } else if (item == 'rarely') {
+                document.querySelector('#rarely').classList.add('checked');
+            }
+
+        }
+    </script>
+</body>
+
+</html>
