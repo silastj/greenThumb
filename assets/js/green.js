@@ -23,7 +23,7 @@
 const formulario = document.querySelector("#form-one");
 
 function handleKeyUp(event) {
-    const target = event.target;
+    var target = event.target;
     const email = document.querySelector("#email");
     const labelEmail = document.querySelector(".email");
 
@@ -34,7 +34,6 @@ function handleKeyUp(event) {
         target.classList.add('invalido');
         target.nextElementSibling.innerText = target.validationMessage;
         target.setCustomValidity("! Please provide a valid e-mail.");
-
         email.style.color = "#F71D1D";
         labelEmail.style.color = "#F71D1D";
     }
@@ -53,19 +52,43 @@ function send() {
     const email = document.querySelector("#email").value;
     const name = document.querySelector("#name_user").value;
     const form = document.querySelector("#form")
+    // var target = event.target;
+    // const aaa = target.checkValidity();
+    // const bbb = target.value;
+
 
     if (name == '' && email == '') {
-        alert("Por Favor preencher os campos acima!!!");
+
+        document.querySelector(".warning").classList.remove();
+        document.querySelector(".warning").style.visibility = "visible";
+        window.scroll({
+            top: 0,
+            behavior: "smooth"
+        });
+        setTimeout(function () {
+            document.querySelector(".warning").style.visibility = "hidden";
+        }, 3000)
     }
-    if (name != null && email == '') {
-        alert("por favor corrigir o email");
-    }
-    if (name == null && email == null) {
-        const formThank = document.querySelector("#form-thank")
+    if (name != null && email == '' || name == '' && email != null) {
+
+        document.querySelector(".warning").classList.remove();
+        document.querySelector(".warning").style.visibility = "visible";
+        window.scroll({
+            top: 0,
+            behavior: "smooth"
+        });
+        setTimeout(function () {
+            document.querySelector(".warning").style.visibility = "hidden";
+        }, 3000)
+    } else if (name !== null && email !== null) {
+        //console.log(event.target.checkValidity);
+        const formThank = document.querySelector("#form-thank");
+        window.scroll({
+            bottom: 0,
+            behavior: "smooth"
+        });
         form.classList.add("form-clean");
         formThank.classList.add("form-thank-ativo", "form-thank-anim");
-    } else {
-
     }
 
 }

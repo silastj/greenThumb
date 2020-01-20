@@ -17,7 +17,8 @@ $cor-cinza-escuro:#6E6E6E;
 }
 
 //WARNING{
-.warning-none {
+.warning-none,
+.warning-purchase {
     visibility: hidden;
 }
 
@@ -59,6 +60,9 @@ $cor-cinza-escuro:#6E6E6E;
     width: 15%;
     margin-left: 5%;
 }
+
+
+
 
 //WARNING MOBILE
 @media screen and (max-width:767px) {
@@ -1137,6 +1141,29 @@ header {
 
 .purchase-description img {
     width: 8%;
+}
+
+.warning-data-purchase {
+    @extend %font-bold;
+    width: 100%;
+}
+
+.warning-data-purchase h2 {
+    margin-top: 15%;
+    font-size: 2em;
+    color: $cor-super-forte;
+}
+
+.warning-icons-purchase {
+    width: 100%;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.warning-icons-purchase img {
+    width: 90%;
 }
 
 @media screen and (max-width:767px) {
