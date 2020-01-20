@@ -35,23 +35,23 @@
             <section class="purchase-top">
                 <div class="purchase-body">
                     <div class="purchase-dados">
-                        <h2>Succulent</h2>
-                        <h2>bowl</h2>
-                        <p>$30</p>
-                        <img src="./assets/plant pictures/bunny-ears-cacti.jpg" alt="Pets">
+                        <h2 id="name">Carregando...</h2>
+                        <!-- <h2>bowl</h2> -->
+                        <p id="price">Carregando...</p>
+                        <img src="./assets/plant pictures/bunny-ears-cacti.jpg" alt="Pets" id="image">
                         <div class="purchase-description">
                             <ul>
                                 <li>
-                                    <img src="./assets/icons/coral/high-sun.svg" alt="High Sun">
-                                    <p>High sunlight</p>
+                                    <img id="img-sun" src="./assets/icons/coral/high-sun.svg" alt="High Sun">
+                                    <p id="name_sun">High sunlight</p>
                                 </li>
                                 <li>
-                                    <img src="./assets/icons/coral/high-sun.svg" alt="High Sun">
-                                    <p>Water rarely</p>
+                                    <img id="img-water" src="./assets/icons/coral/high-sun.svg" alt="High Sun">
+                                    <p id="name_water">Water rarely</p>
                                 </li>
                                 <li>
-                                    <img src="./assets/icons/coral/high-sun.svg" alt="High Sun">
-                                    <p>Non-toxic for pets</p>
+                                    <img id="img-toxic" src="./assets/icons/coral/high-sun.svg" alt="High Sun">
+                                    <p id="name_toxic">Non-toxic for pets</p>
                                 </li>
                             </ul>
                         </div>
@@ -70,9 +70,9 @@
 
                             <form name="form-one" id="form-one" class="form-dados">
                                 <label class="name" for="name">Name</label>
-                                <input type="text" name="name" id="name" placeholder="Crazy Plant Person">
+                                <input type="text" name="name" id="name_user" placeholder="Crazy Plant Person" required>
                                 <span class="erro"></span>
-                                <label class="email" id="email" name="email">E-mail</label>
+                                <label class="email" name="email">E-mail</label>
                                 <input type="email" for="email" id="email" placeholder="plantperson@email.com" required>
                                 <span class="erro"></span>
                                 <a href="#" id="send" onclick="send()">send</a>
@@ -94,6 +94,66 @@
         </div>
     </div>
     <script src="assets/js/green.js"></script>
+    <script type="text/javascript">
+        var id_buy = localStorage.getItem('id_buy');
+
+        if (id_buy != null) {
+            puxarApi(id_buy)
+        } else {
+            window.location.href = 'results.html';
+        }
+
+        async function puxarApi(id_buy) {
+            //RECEBENDO A API E AGUARDA A API
+            const data = await fetch(
+                `https://6nrr6n9l50.execute-api.us-east-1.amazonaws.com/default/front-plantTest-service/plant?id=${id_buy}`
+            );
+            //TRANSFORMANDO EM JSON E AGUARDA
+            const response = await data.json();
+            // MONSTRANDO NO CONSOLE
+            console.log(response);
+
+            document.querySelector("#name").innerHTML = response.name;
+            document.querySelector("#price").innerHTML = `$${response.price}`;
+            document.querySelector("#image").setAttribute('src', response.url);
+            document.querySelector("#img-sun").setAttribute('src', `./assets/icons/icon/${response.sun}.svg`);
+            document.querySelector("#img-water").setAttribute('src', `./assets/icons/icon/${response.water}.svg`);
+
+            var toxic = document.querySelector("#img-toxic");
+            if (toxic == false) {
+                document.querySelector("#img-toxic").setAttribute('src', `./assets/icons/icon/pet.svg`);
+            } else {
+                document.querySelector("#img-toxic").setAttribute('src', `./assets/icons/icon/no-answer.svg`);
+            }
+            document.querySelector("#name_sun").innerHTML = `${response.sun} sunlight`;
+            document.querySelector("#name_water").innerHTML = `Water ${response.water}`;
+        }
+
+
+
+        buyRequest();
+        async function buyRequest() {
+
+            var id = localStorage.getItem('id_buy');
+            var name = document.querySelector('#name_user');
+            var email = document.querySelector("#email");
+
+            const response = await fetch(
+                'https://6nrr6n9l50.execute-api.us-east-1.amazonaws.com/default/front-plantTest-service', {
+                    'method': 'POST',
+                    'body': {
+                        name: 'MARi SIlva',
+                        email: 'maria@maria.com',
+                        id: 1
+
+                    }
+                });
+
+            const data = await response.json();
+
+            console.log(data);
+        }
+    </script>
 </body>
 
 </html>

@@ -67,7 +67,7 @@
             //TRANSFORMANDO EM JSON E AGUARDA
             const response = await data.json();
             // MONSTRANDO NO CONSOLE
-            console.log(response[0].id);
+            //console.log(response[0].id);
 
             //DECLARANDO UM VARIAVEL VAZIA
             var html = '';
@@ -80,16 +80,29 @@
                             <div class="results-price">
                                 <p>$${response[i].price}</p>
                             <div class="results-temp">
-                                <img src="./assets/icons/coral/high-sun.svg" alt="High Sun">
-                                <img src="./assets//icons/coral/high-sun.svg" alt="One Drop">
+                                <img src="./assets/icons/icon/${response[i].sun}.svg" alt="${response[i].name}">
+                                <img src="./assets/icons/icon/${response[i].water}.svg" alt="${response[i].name}">
                             </div>
                     </div>
-                        <a href="purchase.html">buy now</a>
+                        <a onclick="buy(${response[i].id})">buy now</a>
                     </div>`
             }
             document.querySelector('#results-icons').innerHTML = html;
         }
-        //puxarApi();
+
+
+        function buy(id) {
+
+            if (id != '') {
+
+                localStorage.setItem('id_buy', id);
+
+                if (localStorage.getItem('id_buy') != null) {
+                    window.location.href = 'purchase.html';
+
+                }
+            }
+        }
     </script>
 </body>
 

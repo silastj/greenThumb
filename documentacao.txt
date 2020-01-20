@@ -1,0 +1,35 @@
+-- HTML5 E CSS3
+--- Utilizei a estrutura da página com html5 e estilização com o css3.
+
+-- SASS
+--- Utilizei o pré-processador Sass para organizar as variaveis e extend, minificar o arquivo css e também melhorar o desempenho do site.
+--- A Instação do sass foi realizado pelo NPM.
+--- Comando para instalação: npm install -g sass 
+--- Comando para saída do arquivo css, recusar a criação do arquivo map, comprimir o arquivo e por fim monitorar as alterações do .scss: 
+--- sass assets/sass/base.scss assets/css/green.css --no-source-map --style compressed --watch
+
+-- JAVASCRIPT
+----Page Results.html
+--- Com a linguagem JS recebi a API com fetch, transformei em json e armazenei em um variavel.
+--- Fiz um for para pegar cada key da API(Obs: usei template string)
+--- Quando clicar no botão buy ele tem como parametro o ID
+--- Ques armazenado no localStorage e direciona para a proxima pagina  purchase.html
+
+
+---- Page Sunlight.html/water/pets
+--- Eu removo a class checked e depois add ela junto com o parametro.
+--- Pego o atributo ID e armazeno no localStorage
+--- Se a page for diferente de vazio ela entra no if abaixo
+--- E muda para proxima page water/ e quando estiver no water muda para pets.
+--- Se não, entra no else e mostra um modal para escolher uma opção
+--- Depois ativa o scroll para o topo da tela
+--- Permanece 3s na tela e some com a função setTimeout 
+
+----Page purchase.html
+--- Os arquivos do JS da page purchase está na pasta JS green.js
+--- Verifica se está vazio input (nome e email) e quando está vazio o input fica vermelho
+--- Após o preenchimento dos campos ele envia 
+
+
+--- Após a verificacao 
+
