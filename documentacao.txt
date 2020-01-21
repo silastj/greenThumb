@@ -27,8 +27,10 @@
 
 ----Page purchase.html
 --- Os arquivos do JS da page purchase está na pasta JS green.js
---- Verifica se está vazio input (nome e email) e quando está vazio o input fica vermelho
---- Após o preenchimento dos campos ele envia 
+--- Verifica se está vazio input (nome e email), input name vazio aparece um modal na primeira verificacao
+--- Na segunda verificacao do email ele fica vermelho o label e input do email se não tiver o @
+--- 
+--- Após o preenchimento dos campos ele entra no else if para finalizar o envio!
 
 
 --- Após a verificacao 

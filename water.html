@@ -14,7 +14,7 @@
 <body>
     <div class="warning warning-none">
         <div class="warning-data">
-            <h2>Você precisa escolher uma opção!</h2>
+            <h2>You need to choose an option!</h2>
             <div class="warning-icons">
                 <img src="./assets/icons/green/one-drop.svg" alt="Water">
                 <img src="./assets/icons/green/two-drops.svg" alt="Water">
@@ -43,17 +43,17 @@
 
             <section>
                 <div class="water-icons" id="water-icons">
-                    <div class="icon-one" id="daily" onclick="clicou(this)">
+                    <div class="icon-one" id="daily" onclick="clicked(this)">
                         <img src="./assets/icons/green/one-drop.svg" alt="Water">
                         <p>Rarely</p>
                     </div>
 
-                    <div class="icon-two" id="regularly" onclick="clicou(this)">
+                    <div class="icon-two" id="regularly" onclick="clicked(this)">
                         <img src="./assets/icons/green/two-drops.svg" alt="Water">
                         <p>Regularly</p>
                     </div>
 
-                    <div class="icon-three" id="rarely" onclick="clicou(this)">
+                    <div class="icon-three" id="rarely" onclick="clicked(this)">
                         <img src="./assets/icons/green/three-drops.svg" alt="Water">
                         <p>Daily</p>
                     </div>
@@ -76,10 +76,9 @@
 
         </div>
     </div>
-    <script src="assets/js/green.js"></script>
 
     <script type="text/javascript">
-        function clicou(obj) {
+        function clicked(obj) {
             event.preventDefault();
 
             document.querySelector("#daily").classList.remove('checked');

@@ -5,6 +5,7 @@ $cor-suave:#fd9872;
 $cor-neutra:#ffffff;
 $cor-fundo:#F6F6F6;
 $cor-cinza-escuro:#6E6E6E;
+$cor-erro:#F71D1D;
 
 %font-light {
     font-family: 'Montserrat', sans-serif;
@@ -18,7 +19,8 @@ $cor-cinza-escuro:#6E6E6E;
 
 //WARNING{
 .warning-none,
-.warning-purchase {
+.warning-purchase,
+.warning-purchase-erro {
     visibility: hidden;
 }
 
@@ -1030,6 +1032,7 @@ header {
     border-radius: 25px;
     margin: 10px auto;
     color: $cor-forte;
+    cursor: pointer;
 }
 
 .iconResults a:hover {
@@ -1149,7 +1152,7 @@ header {
 }
 
 .warning-data-purchase h2 {
-    margin-top: 15%;
+    margin-top: 10%;
     font-size: 2em;
     color: $cor-super-forte;
 }
@@ -1163,6 +1166,29 @@ header {
 }
 
 .warning-icons-purchase img {
+    width: 90%;
+}
+
+.warning-data-purchase-erro {
+    @extend %font-bold;
+    width: 100%;
+}
+
+.warning-data-purchase-erro h2 {
+    margin-top: 10%;
+    font-size: 2em;
+    color: $cor-erro;
+}
+
+.warning-icons-purchase-erro {
+    width: 100%;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.warning-icons-purchase-erro img {
     width: 90%;
 }
 

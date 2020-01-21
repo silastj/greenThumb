@@ -16,7 +16,7 @@
 <body>
     <div class="warning warning-none">
         <div class="warning-data">
-            <h2>Você precisa escolher uma opção!</h2>
+            <h2>You need to choose an option!</h2>
             <div class="warning-icons">
                 <img src="./assets/icons/coral/high-sun.svg" alt="High Sun">
                 <img src="./assets/icons/coral/low-sun.svg" alt="Low Sun">
@@ -44,17 +44,17 @@
 
             <section>
                 <div class="sunlight-icons">
-                    <div class="icon-one" id="high" onclick="clicou(this)">
+                    <div class="icon-one" id="high" onclick="clicked(this)">
                         <img src="./assets/icons/coral/high-sun.svg" alt="High Sun">
                         <p>High sunlight </p>
                     </div>
 
-                    <div class="icon-two" id="low" onclick="clicou(this)">
+                    <div class="icon-two" id="low" onclick="clicked(this)">
                         <img src="./assets/icons/coral/low-sun.svg" alt="Low Sun">
                         <p>Low sunlight </p>
                     </div>
 
-                    <div class="icon-three" id="no" onclick="clicou(this)">
+                    <div class="icon-three" id="no" onclick="clicked(this)">
                         <img src="./assets/icons/coral/no-answer.svg" alt="Sun">
                         <p>No sunlight </p>
                     </div>
@@ -78,9 +78,8 @@
 
         </div>
     </div>
-    <script src="assets/js/green.js"></script>
     <script type="text/javascript">
-        function clicou(obj) {
+        function clicked(obj) {
             event.preventDefault();
 
             document.querySelector("#high").classList.remove('checked');

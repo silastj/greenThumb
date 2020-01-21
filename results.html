@@ -48,26 +48,23 @@
             </section>
         </div>
     </div>
-    <script src="assets/js/green.js"></script>
     <script type="text/javascript">
         var sun = localStorage.getItem('sun');
         var water = localStorage.getItem('water');
         var pets = localStorage.getItem('pets');
         if (sun != null && water != null && pets != null) {
-            puxarApi(sun, water, pets)
+            pullApi(sun, water, pets)
         } else {
             window.location.href = 'sun.html';
         }
 
-        async function puxarApi(sun, water, pets) {
+        async function pullApi(sun, water, pets) {
             //RECEBENDO A API E AGUARDA A API
             const data = await fetch(
                 `https://6nrr6n9l50.execute-api.us-east-1.amazonaws.com/default/front-plantTest-service?sun=${sun}&water=${water}&pets=${pets}`
             );
             //TRANSFORMANDO EM JSON E AGUARDA
             const response = await data.json();
-            // MONSTRANDO NO CONSOLE
-            //console.log(response[0].id);
 
             //DECLARANDO UM VARIAVEL VAZIA
             var html = '';
@@ -89,7 +86,6 @@
             }
             document.querySelector('#results-icons').innerHTML = html;
         }
-
 
         function buy(id) {
 
